@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomas Brasileiros</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .bioma {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            background-color: #e9f5ee;
+        }
+
+        .bioma h3 {
+            color: #007bff;
+        }
+
+        .bioma img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .footer {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="/">BioPreserve</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/biomas/">Biomas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/quiz/">Quiz</a></li>
+                <li class="nav-item"><a class="nav-link" href="/resultados/">Resultados</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="/logout/">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Biomas Brasileiros</h2>
+        <p>Aqui você encontrará informações sobre os diversos biomas do Brasil.</p>
+
+        <div class="bioma">
+            <h3>Amazônia</h3>
+            <p>A Amazônia é o maior bioma do Brasil, com uma vasta biodiversidade e uma grande variedade de espécies de plantas e animais. É crucial para a regulação do clima global e abriga milhões de espécies.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Amazon_Rainforest.jpg/800px-Amazon_Rainforest.jpg" alt="Amazônia">
+        </div>
+
+        <div class="bioma">
+            <h3>Cerrado</h3>
+            <p>O Cerrado é o segundo maior bioma do Brasil, caracterizado por vegetação de savana e uma diversidade incrível de fauna e flora. É um importante berçário de águas, abastecendo diversos rios no Brasil.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerrado_vegetation.jpg/800px-Cerrado_vegetation.jpg" alt="Cerrado">
+        </div>
+
+        <div class="bioma">
+            <h3>Pantanal</h3>
+            <p>O Pantanal é a maior área alagável do mundo, conhecido pela sua rica biodiversidade e ecossistemas aquáticos. Ele é fundamental para a preservação de várias espécies ameaçadas.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Pantanal_Piranhas.jpg/800px-Pantanal_Piranhas.jpg" alt="Pantanal">
+        </div>
+
+        <div class="bioma">
+            <h3>Mata Atlântica</h3>
+            <p>A Mata Atlântica é uma floresta tropical que abriga uma enorme diversidade de espécies. Apesar de sua rica biodiversidade, ela está ameaçada pela urbanização e desmatamento.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mata_atlantica.jpg/800px-Mata_atlantica.jpg" alt="Mata Atlântica">
+        </div>
+
+        <div class="bioma">
+            <h3>Caatinga</h3>
+            <p>A Caatinga é um bioma exclusivo do Brasil, caracterizado por vegetação xerófila e climas semiáridos. Apesar das condições adversas, abriga uma fauna e flora únicas e adaptadas.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Caatinga2.jpg/800px-Caatinga2.jpg" alt="Caatinga">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 BioPreserve. Todos os direitos reservados.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

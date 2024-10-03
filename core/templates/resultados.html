@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados do Quiz</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Resultados do Quiz</h2>
+        <p>Você acertou {{ score }} de {{ total }} perguntas!</p>
+
+        <h3>Detalhes das Respostas:</h3>
+        <ul>
+            {% for result in results %}
+                <li>
+                    <strong>Pergunta:</strong> {{ result.question.question_text }}<br>
+                    <strong>Resposta do Usuário:</strong> {{ result.user_answer }}<br>
+                    <strong>Resposta Correta:</strong> {{ result.question.correct_answer }}<br>
+                    <strong>Status:</strong> 
+                    {% if result.is_correct %}
+                        <span style="color: green;">Correta</span>
+                    {% else %}
+                        <span style="color: red;">Incorreta</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="/quiz/">Tentar novamente</a><br>
+        <a href="/">Voltar para a página inicial</a>
+    </div>
+</body>
+</html>
