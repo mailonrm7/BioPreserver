@@ -16,8 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+from core import views  # Importe as views corretas
+
+def login_view(request):
+    # Autenticação bem-sucedida
+    return redirect('home')  # Certifique-se de que a URL com nome 'home' está configurada
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # Inclui as URLs do app Core
+     path('quiz/', views.quiz_view, name='quiz'),
+    path('resultados/', views.resultados_view, name='resultados'),
+    # Outras URLs...
+
+    
 ]
+
+
+

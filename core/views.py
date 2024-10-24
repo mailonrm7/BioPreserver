@@ -1,9 +1,10 @@
+import random
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Question
-
+from .models import Bioma
 # Página inicial
 def home(request):
     return render(request, 'home.html')
@@ -39,7 +40,9 @@ def logout_view(request):
 # Página de biomas
 @login_required
 def biomas_view(request):
-    return render(request, 'biomas.html')
+    # Recupera todos os biomas
+    biomas = Bioma.objects.all()
+    return render(request, 'biomas.html', {'biomas': biomas})
 
 # Página de quizzes
 @login_required
@@ -49,25 +52,33 @@ def quiz_view(request):
 # Página de resultados
 @login_required
 def resultados_view(request):
-    return render(request, 'resultados.html')
+    return render(request, 'resultados.html')  # Simplesmente renderiza a página de resultados
+
 #Página de quiz
 @login_required
+
 def quiz_view(request):
+    # Recupera todas as perguntas do banco de dados
+    questions = list(Question.objects.all())
+
+    # Embaralha as perguntas aleatoriamente
+    random.shuffle(questions)
+
+    # Define o número máximo de perguntas a serem exibidas
+    max_questions = 5
+    questions = questions[:max_questions]
+
     if request.method == 'POST':
-        # Obtendo as respostas do usuário
-        score = 0
-        questions = Question.objects.all()
-        
-        # Verifica se a resposta está correta
+        score = 0  # Inicializa o placar de acertos
+
+        # Processa as respostas enviadas pelo usuário
         for question in questions:
-            user_answer = request.POST.get(f'question_{question.id}')
-            if user_answer == question.correct_answer:
-                score += 1
+            user_answer = request.POST.get(f'question_{question.id}')  # Obtém a resposta do usuário
+            if user_answer == question.correct_answer:  # Verifica se a resposta está correta
+                score += 1  # Incrementa o placar em caso de resposta correta
 
-        return render(request, 'resultados.html', {'score': score, 'total': questions.count()})
+        # Renderiza a página de resultados com o score e o total de perguntas
+        return render(request, 'resultados.html', {'score': score, 'total': max_questions})
 
-    # Renderizando as perguntas do quiz
-    questions = Question.objects.all()
+    # Renderiza o template do quiz com as perguntas
     return render(request, 'quiz.html', {'questions': questions})
-
-# Create your views here.

@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados do Quiz</title>
+    <title>Resultado do Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #28a745;
+        }
+
+        .btn {
+            width: 200px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h2>Resultados do Quiz</h2>
-        <p>Você acertou {{ score }} de {{ total }} perguntas!</p>
+        <h2>Resultado do Quiz</h2>
+        <p>Você acertou <strong>{{ score }}</strong> de <strong>{{ total }}</strong> 5  perguntas!</p>
+        
+        <!-- Botão para refazer o quiz -->
+        <a href="/quiz/" class="btn btn-primary">Tentar Novamente</a>
 
-        <h3>Detalhes das Respostas:</h3>
-        <ul>
-            {% for result in results %}
-                <li>
-                    <strong>Pergunta:</strong> {{ result.question.question_text }}<br>
-                    <strong>Resposta do Usuário:</strong> {{ result.user_answer }}<br>
-                    <strong>Resposta Correta:</strong> {{ result.question.correct_answer }}<br>
-                    <strong>Status:</strong> 
-                    {% if result.is_correct %}
-                        <span style="color: green;">Correta</span>
-                    {% else %}
-                        <span style="color: red;">Incorreta</span>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-
-        <a href="/quiz/">Tentar novamente</a><br>
-        <a href="/">Voltar para a página inicial</a>
+        <!-- Botão para voltar à página inicial -->
+        <a href="/" class="btn btn-success">Voltar à Página Inicial</a>
     </div>
 </body>
 </html>
